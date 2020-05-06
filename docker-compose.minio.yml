@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  minio:
+    container_name: ${APP_MINIO_ADDRESS}
+    hostname: ${APP_MINIO_ADDRESS}
+    image: minio/minio:latest
+    command: server /data
+    environment:
+      MINIO_ACCESS_KEY: ${APP_MINIO_ACCESS_KEY}
+      MINIO_SECRET_KEY: ${APP_MINIO_SECRET_KEY}
+    ports:
+      - "9000:9000"
+    networks:
+      gbmpsy-network:
+    volumes:
+      - app-file-data:/data
+
+volumes:
+  app-file-data:

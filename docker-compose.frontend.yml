@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  frontend:
+    container_name: ${APP_FRONTEND_ADDRESS}
+    hostname: ${APP_FRONTEND_ADDRESS}
+    image: ${APP_FRONTEND_ADDRESS}:latest
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    command: ng serve --host 0.0.0.0
+    volumes:
+      - './frontend:/app'
+      - '/app/node_modules'
+    ports:
+      - '${APP_FRONTEND_PORT}:4200'
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - APP_BACKEND_ADDRESS=${APP_BACKEND_ADDRESS}
+    networks:
+      gbmpsy-network:

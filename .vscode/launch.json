@@ -1,0 +1,32 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "firefox",
+      "request": "launch",
+      "reAttach": true,
+      "name": "Launch localhost",
+      "url": "http://localhost:4200/",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Debug: app-name",
+      "remoteRoot": "/usr/src/app",
+      "localRoot": "${workspaceFolder}",
+      "protocol": "inspector",
+      "port": 9229,
+      "restart": true,
+      "address": "0.0.0.0",
+      "skipFiles": ["<node_internals>/**"]
+    }
+  ],
+  "recommendations": [
+    "angular.ng-template",
+    "ms-vscode.vscode-typescript-tslint-plugin",
+    "esbenp.prettier-vscode",
+    "prisma.vscode-graphql",
+    "prisma.prisma"
+  ]
+}

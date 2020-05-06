@@ -1,0 +1,33 @@
+version: '3.7'
+services:
+  backend:
+    container_name: ${APP_BACKEND_ADDRESS}
+    hostname: ${APP_BACKEND_ADDRESS}
+    image: ${APP_BACKEND_ADDRESS}:latest
+    build:
+      context: ${APP_BACKEND_DIRECTORY}
+      target: development
+    ports:
+      - 3000:3000
+      - 9229:9229
+    volumes:
+      - ${APP_BACKEND_DIRECTORY}:/usr/src/app
+      - /usr/src/app/node_modules
+    command: npm run start:debug
+    depends_on:
+      - db
+    environment:
+      APP_BACKEND_PORT: ${APP_BACKEND_PORT}
+      APP_DB_ADDRESS: ${APP_DB_ADDRESS}
+      APP_DB_USER: ${APP_DB_USER}
+      APP_DB_PASSWORD: ${APP_DB_PASSWORD}
+      APP_DB_NAME: ${APP_DB_NAME}
+      APP_JWT_SECRET: ${APP_JWT_SECRET}
+      APP_MINIO_ACCESS_KEY: ${APP_MINIO_ACCESS_KEY}
+      APP_MINIO_SECRET_KEY: ${APP_MINIO_SECRET_KEY}
+      APP_MINIO_ADDRESS: ${APP_MINIO_ADDRESS}
+      APP_JITSI_JWT_APP_ID: ${APP_JITSI_JWT_APP_ID}
+      APP_JITSI_JWT_APP_SECRET: ${APP_JITSI_JWT_APP_SECRET}
+      APP_JITSI_PUBLIC_URL: ${APP_JITSI_PUBLIC_URL}
+    networks:
+      gbmpsy-network:
